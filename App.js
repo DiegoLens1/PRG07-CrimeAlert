@@ -1,10 +1,8 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import Map from './map';
 import CrimeList from './crimeList';
-import MyTabs from './navTabs';
 
 const Tab = createMaterialBottomTabNavigator();
 
