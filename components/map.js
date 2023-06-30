@@ -1,16 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import MapView, { Callout, Circle, Marker } from "react-native-maps";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View } from "react-native";
 import CrimeDataContext from "../context/crimeDataContext";
 import ThemeContext from "../context/themeContext";
 import CustomCallout from "./customCallout";
-import { Pressable } from "react-native";
 
 export default function Map({ regionState, setRegionState }) {
   //haal context op om in dit component te gebruiken
   const { theme } = useContext(ThemeContext);
   const { crimeData } = useContext(CrimeDataContext);
-  const [followuser, setFollowUser] = useState(false);
 
   useEffect(() => {
     console.log(regionState);
@@ -27,8 +25,7 @@ export default function Map({ regionState, setRegionState }) {
         initialRegion={regionState}
         region={regionState}
         showsUserLocation={true}
-        followsUserLocation={followuser}
-        onRegionChangeComplete={(region) => onRegionChange(region)}
+        // onRegionChangeComplete={(region) => onRegionChange(region)}
       >
         {/* Loop door crimeData om de markers met circels op de map te zetten */}
         {crimeData.map((marker) => (
@@ -60,13 +57,6 @@ export default function Map({ regionState, setRegionState }) {
           </React.Fragment>
         ))}
       </MapView>
-      {/* Knop om het volgen van de gebruiker op de map te toggelen */}
-      <Pressable
-        style={styles.followUserButton}
-        onPress={() => setFollowUser(!followuser ? true : false)}
-      >
-        <Text>W</Text>
-      </Pressable>
     </View>
   );
 }

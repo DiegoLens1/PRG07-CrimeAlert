@@ -75,13 +75,7 @@ export default function App() {
             }
           >
             <Tab.Screen name="Map">
-              {(props) => (
-                <Map
-                  {...props}
-                  regionState={regionState}
-                  setRegionState={setRegionState}
-                />
-              )}
+              {(props) => <Map {...props} regionState={regionState} />}
             </Tab.Screen>
             <Tab.Screen name="Crime Areas">
               {(props) => (
