@@ -4,7 +4,7 @@ import CrimeDataContext from "../context/crimeDataContext";
 import ListRenderItem from "./listRenderItem";
 import ThemeContext from "../context/themeContext";
 
-export default function CrimeList() {
+export default function CrimeList({setRegionState, navigation}) {
   //haal context op om in dit component te gebruiken
   const { crimeData } = useContext(CrimeDataContext);
   const { theme } = useContext(ThemeContext);
@@ -28,7 +28,7 @@ export default function CrimeList() {
       >
         <FlatList
           data={crimeData}
-          renderItem={({ item }) => <ListRenderItem data={item} />}
+          renderItem={({ item }) => <ListRenderItem data={item} setRegionState={setRegionState} navigation={navigation}/>}
         />
       </SafeAreaView>
     </React.Fragment>

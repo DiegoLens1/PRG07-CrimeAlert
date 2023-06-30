@@ -2,12 +2,21 @@ import { useContext, useState } from "react";
 import { Text, StyleSheet, Pressable } from "react-native";
 import ThemeContext from "../context/themeContext";
 import React from "react";
-import { View } from "react-native-web";
 
-export default function ListRenderItem({ data }) {
+export default function ListRenderItem({ data, setRegionState, navigation }) {
   //haal context op om in dit component te gebruiken
   const { theme } = useContext(ThemeContext);
   const [openDetails, setOpenDetails] = useState(false);
+  const setRegion = () => {
+    setRegionState({
+      latitude: data.latitude,
+      longitude: data.longitude,
+      latitudeDelta: 0.05,
+      longitudeDelta: 0.05,
+    });
+    navigation.navigate('Map')
+  };
+
   return (
     <React.Fragment>
       <Pressable
@@ -28,12 +37,13 @@ export default function ListRenderItem({ data }) {
       {!openDetails ? null : (
         <Pressable style={styles.itemWrapper}>
           <Text
-            style={[
-              theme === "light" ? styles.lightText : styles.darkText,
-            ]}
+            style={[theme === "light" ? styles.lightText : styles.darkText]}
           >
             {data.description}
           </Text>
+          <Pressable style={styles.locationButton} onPress={() => setRegion()}>
+            <Text>Ga naar locatie op kaart</Text>
+          </Pressable>
         </Pressable>
       )}
     </React.Fragment>

@@ -21,6 +21,12 @@ export default function App() {
   const crimeDataState = { crimeData, setCrimeData };
   const [theme, setTheme] = useState(useColorScheme());
   const themeState = { theme, setTheme };
+  const [regionState, setRegionState] = useState({
+    latitude: 51.9225,
+    longitude: 4.4786,
+    latitudeDelta: 0.15,
+    longitudeDelta: 0.08,
+  });
 
   useEffect(() => {
     fetchData();
@@ -68,8 +74,12 @@ export default function App() {
                 : styles.darkTabBackground
             }
           >
-            <Tab.Screen name="Map" component={Map} />
-            <Tab.Screen name="Crime Areas" component={CrimeList} />
+            <Tab.Screen name="Map">
+              {(props) => <Map {...props} regionState={regionState} setRegionState={setRegionState} />}
+            </Tab.Screen>
+            <Tab.Screen name="Crime Areas">
+              {(props) => <CrimeList {...props} setRegionState={setRegionState} />}
+            </Tab.Screen>
             <Tab.Screen name="Settings" component={Settings} />
           </Tab.Navigator>
         </NavigationContainer>
