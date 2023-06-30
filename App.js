@@ -36,6 +36,7 @@ export default function App() {
         "https://stud.hosted.hr.nl/1000200/crimeWebservice/"
       );
       const jsonData = await response.json();
+      //zet de crimedata in de context state van de fetch
       setCrimeData(jsonData);
       const jsonValue = JSON.stringify(jsonData);
       await AsyncStorage.setItem("crimeData", jsonValue);
@@ -45,10 +46,11 @@ export default function App() {
         try {
           const jsonValue = await AsyncStorage.getItem("crimeData");
           return jsonValue != null ? JSON.parse(jsonValue) : null;
-        } catch (e) {
-          // error reading value
+        } catch (error) {
+          console.error(error)
         }
       };
+      //zet de crimedata in de context state van async storage
       setCrimeData(await getData());
     }
   };
