@@ -1,6 +1,4 @@
-import {
-  NavigationContainer,
-} from "@react-navigation/native";
+import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { useState, useEffect } from "react";
 import Map from "./components/map";
@@ -74,7 +72,13 @@ export default function App() {
             }
           >
             <Tab.Screen name="Map">
-              {(props) => <Map {...props} regionState={regionState} setRegionState={setRegionState} />}
+              {(props) => (
+                <Map
+                  {...props}
+                  regionState={regionState}
+                  setRegionState={setRegionState}
+                />
+              )}
             </Tab.Screen>
             <Tab.Screen name="Crime Areas">
               {(props) => (
