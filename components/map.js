@@ -1,22 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MapView, { Callout, Circle, Marker } from "react-native-maps";
 import { StyleSheet, View } from "react-native";
 import CrimeDataContext from "../context/crimeDataContext";
 import ThemeContext from "../context/themeContext";
 import CustomCallout from "./customCallout";
 
-export default function Map({ regionState, setRegionState }) {
+export default function Map({ regionState }) {
   //haal context op om in dit component te gebruiken
   const { theme } = useContext(ThemeContext);
   const { crimeData } = useContext(CrimeDataContext);
+  const [followuser, setFollowUser] = useState(false);
 
-  useEffect(() => {
-    console.log(regionState);
-  });
-
-  const onRegionChange = (region) => {
-    setRegionState(region);
-  };
   return (
     <View style={styles.container}>
       <MapView
@@ -25,7 +19,7 @@ export default function Map({ regionState, setRegionState }) {
         initialRegion={regionState}
         region={regionState}
         showsUserLocation={true}
-        // onRegionChangeComplete={(region) => onRegionChange(region)}
+        followsUserLocation={followuser}
       >
         {/* Loop door crimeData om de markers met circels op de map te zetten */}
         {crimeData.map((marker) => (

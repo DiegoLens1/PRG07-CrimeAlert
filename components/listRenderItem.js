@@ -48,7 +48,7 @@ export default function ListRenderItem({ data, setRegionState, navigation }) {
             ]}
             onPress={() => setRegion()}
           >
-            <Text style={styles.darkText}>Ga naar locatie op kaart</Text>
+            <Text style={styles.darkText}>Go to location on the map</Text>
           </Pressable>
         </Pressable>
       )}

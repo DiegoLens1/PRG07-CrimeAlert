@@ -1,7 +1,5 @@
 import {
   NavigationContainer,
-  DefaultTheme,
-  DarkTheme,
 } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { useState, useEffect } from "react";
@@ -21,6 +19,7 @@ export default function App() {
   const crimeDataState = { crimeData, setCrimeData };
   const [theme, setTheme] = useState(useColorScheme());
   const themeState = { theme, setTheme };
+  //region state om de locatie van de map aan te kunnen passen
   const [regionState, setRegionState] = useState({
     latitude: 51.9225,
     longitude: 4.4786,
@@ -75,7 +74,7 @@ export default function App() {
             }
           >
             <Tab.Screen name="Map">
-              {(props) => <Map {...props} regionState={regionState} />}
+              {(props) => <Map {...props} regionState={regionState} setRegionState={setRegionState} />}
             </Tab.Screen>
             <Tab.Screen name="Crime Areas">
               {(props) => (
