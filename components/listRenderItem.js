@@ -14,7 +14,7 @@ export default function ListRenderItem({ data, setRegionState, navigation }) {
       latitudeDelta: 0.05,
       longitudeDelta: 0.05,
     });
-    navigation.navigate('Map')
+    navigation.navigate("Map");
   };
 
   return (
@@ -41,8 +41,14 @@ export default function ListRenderItem({ data, setRegionState, navigation }) {
           >
             {data.description}
           </Text>
-          <Pressable style={styles.locationButton} onPress={() => setRegion()}>
-            <Text>Ga naar locatie op kaart</Text>
+          <Pressable
+            style={[
+              styles.locationButton,
+              theme === "light" ? styles.lightPrimary : styles.darkPrimary,
+            ]}
+            onPress={() => setRegion()}
+          >
+            <Text style={styles.darkText}>Ga naar locatie op kaart</Text>
           </Pressable>
         </Pressable>
       )}
@@ -58,15 +64,21 @@ const styles = StyleSheet.create({
     padding: 20,
     borderWidth: StyleSheet.hairlineWidth,
     borderBottomColor: "grey",
+    gap: 10,
   },
   itemText: {
     fontSize: 25,
+  },
+  locationButton: {
+    padding: 10,
+    borderRadius: 20,
+    alignItems: "center",
   },
   lightPrimary: {
     backgroundColor: "rgb(0, 122, 255)",
   },
   darkPrimary: {
-    backgroundColor: "rgb(10, 132, 255)",
+    backgroundColor: "#394153",
   },
   lightText: {
     color: "rgb(28, 28, 30)",

@@ -63,15 +63,7 @@ export default function Map({ regionState, setRegionState }) {
       {/* Knop om het volgen van de gebruiker op de map te toggelen */}
       <Pressable
         style={styles.followUserButton}
-        // onPress={() => setFollowUser(!followuser ? true : false)}
-        onPress={() =>
-          setRegionState({
-            latitude: crimeData[7].latitude,
-            longitude: crimeData[7].longitude,
-            latitudeDelta: 0.05,
-            longitudeDelta: 0.05,
-          })
-        }
+        onPress={() => setFollowUser(!followuser ? true : false)}
       >
         <Text>W</Text>
       </Pressable>
